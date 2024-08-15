@@ -1,18 +1,21 @@
 package com.castelo.equipamento.modelo;
+import jakarta.persistence.Entity;
 
+@Entity
 public class Equipamento {
     
-    String nome;
-    Local local;
-    String marca;
-    boolean status;
-    int numeracao;
+    private String nome;
+    private Local local;
+    private String marca;
+    private boolean status;
+    private int numeracao;
 
     public Equipamento() {
     }
 
-    public Equipamento(String nome, String marca, boolean status, int numeracao) {
+    public Equipamento(String nome, Local local, String marca, boolean status, int numeracao) {
         this.nome = nome;
+        this.local = local;
         this.marca = marca;
         this.status = status;
         this.numeracao = numeracao;
@@ -24,6 +27,14 @@ public class Equipamento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Local getLocal() {
+        return local;
+    }
+
+    public void setLocal(Local local) {
+        this.local = local;
     }
 
     public String getMarca() {
@@ -55,6 +66,7 @@ public class Equipamento {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((local == null) ? 0 : local.hashCode());
         result = prime * result + ((marca == null) ? 0 : marca.hashCode());
         result = prime * result + (status ? 1231 : 1237);
         result = prime * result + numeracao;
@@ -75,6 +87,11 @@ public class Equipamento {
                 return false;
         } else if (!nome.equals(other.nome))
             return false;
+        if (local == null) {
+            if (other.local != null)
+                return false;
+        } else if (!local.equals(other.local))
+            return false;
         if (marca == null) {
             if (other.marca != null)
                 return false;
@@ -89,7 +106,7 @@ public class Equipamento {
 
     @Override
     public String toString() {
-        return "Equipamento [nome=" + nome + ", marca=" + marca + ", status=" + status + ", numeracao=" + numeracao
-                + "]";
+        return "Equipamento [nome=" + nome + ", local=" + local + ", marca=" + marca + ", status=" + status
+                + ", numeracao=" + numeracao + "]";
     }
 }
