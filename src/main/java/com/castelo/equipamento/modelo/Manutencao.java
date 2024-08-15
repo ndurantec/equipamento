@@ -1,9 +1,17 @@
 package com.castelo.equipamento.modelo;
-
 import java.sql.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Manutencao {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String local;
     private double telefone;
     private String email;
