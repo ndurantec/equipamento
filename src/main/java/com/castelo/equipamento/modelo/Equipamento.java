@@ -3,7 +3,7 @@ package com.castelo.equipamento.modelo;
 public class Equipamento {
     
     String nome;
-    //Local local;
+    Local local;
     String marca;
     boolean status;
     int numeracao;
