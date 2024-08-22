@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EquipamentoController {
 
     @GetMapping(value = "/imprimir")
-    public void imprimir(){
-        System.out.println("chegou no servidor");
+    public String imprimir(){
+        return "chegou no servidor";
     }
 }
