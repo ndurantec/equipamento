@@ -1,4 +1,4 @@
-package com.castelo.equipamento.modelo.contrller;
+package com.castelo.equipamento.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
