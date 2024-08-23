@@ -56,5 +56,4 @@ public class ManutencaoDto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
 }

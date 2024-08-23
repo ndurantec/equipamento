@@ -2,7 +2,7 @@ package com.castelo.equipamento.dto;
 
 public class EquipamentoDto {
     private String nome;
-    private Local local;
+    private LocalDto local;
     private String marca;
     private boolean status;
     private int numeracao;
@@ -14,10 +14,10 @@ public class EquipamentoDto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Local getLocal() {
+    public LocalDto getLocal() {
         return local;
     }
-    public void setLocal(Local local) {
+    public void setLocal(LocalDto local) {
         this.local = local;
     }
     public String getMarca() {
@@ -38,5 +38,4 @@ public class EquipamentoDto {
     public void setNumeracao(int numeracao) {
         this.numeracao = numeracao;
     }
-
 }

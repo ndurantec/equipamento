@@ -152,8 +152,4 @@ public class Manutencao {
         return "Manutencao [local=" + local + ", telefone=" + telefone + ", email=" + email + ", data=" + data
                 + ", custo=" + custo + ", equipamento=" + equipamento + ", nome=" + nome + "]";
     }
-
-    
-    
-
 }

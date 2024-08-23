@@ -30,4 +30,10 @@ public class EquipamentoController {
     public void deletar(){
         System.out.println("deletado com sucesso");
     }
+
+
+    @GetMapping(value = "/findAll")
+    public String findAll() {
+        return "Terceira versão do método...";
+    }
 }

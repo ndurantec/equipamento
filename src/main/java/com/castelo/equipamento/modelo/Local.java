@@ -57,7 +57,4 @@ public class Local {
     public String toString() {
         return "Local [nome=" + nome + "]";
     }
-
-    
-
 }

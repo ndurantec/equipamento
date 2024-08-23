@@ -1,10 +1,10 @@
 package com.castelo.equipamento.dto;
 
-public class Local {
+public class LocalDto {
 
     private String nome;
 
-    public Local() {
+    public LocalDto() {
     }
 
     public String getNome() {
@@ -14,6 +14,4 @@ public class Local {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
 }
