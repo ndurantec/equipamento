@@ -34,6 +34,14 @@ public class Manutencao {
         this.nome = nome;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getLocal() {
         return local;
     }

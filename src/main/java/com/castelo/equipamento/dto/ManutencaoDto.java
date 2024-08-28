@@ -12,6 +12,7 @@ public class ManutencaoDto {
     private float custo;
     private Equipamento equipamento;
     private String nome;
+    
     public ManutencaoDto() {
     }
     public String getLocal() {

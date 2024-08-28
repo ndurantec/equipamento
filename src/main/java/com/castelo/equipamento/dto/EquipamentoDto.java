@@ -1,11 +1,14 @@
 package com.castelo.equipamento.dto;
 
+import com.castelo.equipamento.modelo.Equipamento;
+
 public class EquipamentoDto {
     private String nome;
     private LocalDto local;
     private String marca;
     private boolean status;
     private int numeracao;
+
     public EquipamentoDto() {
     }
     public String getNome() {
@@ -37,5 +40,9 @@ public class EquipamentoDto {
     }
     public void setNumeracao(int numeracao) {
         this.numeracao = numeracao;
+    }
+       
+    public Equipamento novoEquipamento(){
+        return new Equipamento(nome, null, marca, status, numeracao);
     }
 }
