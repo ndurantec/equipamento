@@ -20,7 +20,8 @@ public class Equipamento {
     public Equipamento() {
     }
 
-    public Equipamento(String nome, Local local, String marca, boolean status, int numeracao) {
+    public Equipamento(Long id, String nome, Local local, String marca, boolean status, int numeracao) {
+        this.id = id;
         this.nome = nome;
         this.local = local;
         this.marca = marca;
@@ -34,7 +35,7 @@ public class Equipamento {
 
     public void setId(Long id) {
         this.id = id;
-    }   
+    }
 
     public String getNome() {
         return nome;
@@ -80,6 +81,7 @@ public class Equipamento {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((local == null) ? 0 : local.hashCode());
         result = prime * result + ((marca == null) ? 0 : marca.hashCode());
@@ -97,6 +99,11 @@ public class Equipamento {
         if (getClass() != obj.getClass())
             return false;
         Equipamento other = (Equipamento) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
         if (nome == null) {
             if (other.nome != null)
                 return false;
@@ -121,7 +128,7 @@ public class Equipamento {
 
     @Override
     public String toString() {
-        return "Equipamento [nome=" + nome + ", local=" + local + ", marca=" + marca + ", status=" + status
-                + ", numeracao=" + numeracao + "]";
-    }  
-}
+        return "Equipamento [id=" + id + ", nome=" + nome + ", local=" + local + ", marca=" + marca + ", status="
+                + status + ", numeracao=" + numeracao + "]";
+    }
+}  
