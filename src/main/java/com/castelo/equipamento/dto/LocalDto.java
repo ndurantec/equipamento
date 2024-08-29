@@ -1,5 +1,7 @@
 package com.castelo.equipamento.dto;
 
+import com.castelo.equipamento.modelo.Local;
+
 public class LocalDto {
 
     private String nome;
@@ -13,5 +15,9 @@ public class LocalDto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Local novoLocal(){
+        return new Local(null, nome);
     }
 }
