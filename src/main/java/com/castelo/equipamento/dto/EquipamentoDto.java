@@ -43,6 +43,6 @@ public class EquipamentoDto {
     }
        
     public Equipamento novoEquipamento(){
-        return new Equipamento(nome, null, marca, status, numeracao);
+        return new Equipamento(null, nome, null, marca, status, numeracao);
     }
 }

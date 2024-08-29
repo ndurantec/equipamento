@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,16 +52,23 @@ public class EquipamentoController {
     }
 
     @PostMapping(value = "/insert")
-    public ResponseEntity<Equipamento> insert(@RequestBody EquipamentoDto equipamentoDto){
+        public ResponseEntity<Equipamento> insert(@RequestBody EquipamentoDto equipamentoDto){
 
-        Equipamento equipamento = equipamentoDto.novoEquipamento();
-        equipamentoRepository.save(equipamento);
+            Equipamento equipamento = equipamentoDto.novoEquipamento();
+            equipamentoRepository.save(equipamento);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}").
-                    buildAndExpand(equipamento.getId())
-                    .toUri();
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                        .path("/{id}").
+                        buildAndExpand(equipamento.getId())
+                        .toUri();
 
-        return ResponseEntity.created(uri).body(equipamento);
+            return ResponseEntity.created(uri).body(equipamento);
+    }
+
+    @GetMapping(value = "/{Id}")
+        public ResponseEntity<Equipamento> findById(@PathVariable Long id){
+            return equipamentoRepository.findById(id)
+            .map(registro -> ResponseEntity.ok().body(registro))
+            .orElse(ResponseEntity.notFound().build());
     }
 }
