@@ -31,12 +31,6 @@ public class LocalController {
         return "chegou no servidor";
     }
 
-    @PostMapping(value = "/cadastrar")
-    public ResponseEntity<Void> cadastrar(){
-        System.out.println("cadastrou com sucesso");
-        return ResponseEntity.ok().build();
-    }
-
     @PutMapping(value = "/atualizar")
     public ResponseEntity<Void> atualizar(){
         System.out.println("atualizando concluída");
@@ -55,8 +49,8 @@ public class LocalController {
         return ResponseEntity.ok(locais);
     }  
 
-    @PostMapping(value = "/insert")
-    public ResponseEntity<Local> insert(@RequestBody LocalDto localDto){
+    @PostMapping(value = "/cadastrar")
+    public ResponseEntity<Local> cadastrar(@RequestBody LocalDto localDto){
 
         Local local = localDto.novoLocal();
         localRepository.save(local);
