@@ -31,11 +31,6 @@ public class EquipamentoController {
         return "chegou no servidor";
     }
 
-    @PostMapping(value = "/cadastrar")
-    public void cadastrar(){
-        System.out.println("cadastrou com sucesso");
-    }
-
     @PutMapping(value = "/atualizar")
     public void atualizar(){
         System.out.println("atualização concluida");
@@ -51,24 +46,43 @@ public class EquipamentoController {
         return equipamentoRepository.findAll();
     }
 
-    @PostMapping(value = "/insert")
-        public ResponseEntity<Equipamento> insert(@RequestBody EquipamentoDto equipamentoDto){
+    @PostMapping(value = "/cadastrarEquipamento")
+    public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
-            Equipamento equipamento = equipamentoDto.novoEquipamento();
-            equipamentoRepository.save(equipamento);
+        Equipamento equipamento = equipamentoDto.novoEquipamento();
+        equipamentoRepository.save(equipamento);
 
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                        .path("/{id}").
-                        buildAndExpand(equipamento.getId())
-                        .toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}").
+                    buildAndExpand(equipamento.getId())
+                    .toUri();
 
-            return ResponseEntity.created(uri).body(equipamento);
+        return ResponseEntity.created(uri).body(equipamento);
     }
 
-    @GetMapping(value = "/{Id}")
-        public ResponseEntity<Equipamento> findById(@PathVariable Long id){
-            return equipamentoRepository.findById(id)
-            .map(registro -> ResponseEntity.ok().body(registro))
-            .orElse(ResponseEntity.notFound().build());
+    @GetMapping(value = "/{Id}") 
+    public ResponseEntity<Equipamento> findById(@PathVariable Long id){
+        return equipamentoRepository.findById(id)
+        .map(registro -> ResponseEntity.ok().body(registro))
+        .orElse(ResponseEntity.notFound().build());
     }
+
+
+    /*
+
+   
+    private ResponseEntity<Equipamento> buscarEquipamento(Equipamento equipamento){
+
+
+
+        
+
+
+        return equipamentoRepository.findById(id)
+        .map(registro -> ResponseEntity.ok().body(registro))
+        .orElse(ResponseEntity.notFound().build());
+    }
+    */
+
+
 }
