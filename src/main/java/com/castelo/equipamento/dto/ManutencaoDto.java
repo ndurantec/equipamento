@@ -3,6 +3,8 @@ package com.castelo.equipamento.dto;
 import java.sql.Date;
 
 import com.castelo.equipamento.modelo.Equipamento;
+import com.castelo.equipamento.modelo.Local;
+import com.castelo.equipamento.modelo.Manutencao;
 
 public class ManutencaoDto {
      private String local;
@@ -56,5 +58,8 @@ public class ManutencaoDto {
     }
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public Manutencao novaManutencao(){
+           return new Manutencao(local, telefone, email, data, custo, equipamento, nome);
     }
 }
