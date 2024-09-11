@@ -2,6 +2,7 @@ package com.castelo.equipamento.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class EquipamentoController {
         return equipamentoRepository.findAll();
     }
 
-    @PostMapping(value = "/cadastrarEquipamento")
+    @PostMapping(value = "/cadastrarequipamento")
     public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
         Equipamento equipamento = equipamentoDto.novoEquipamento();
@@ -67,21 +68,19 @@ public class EquipamentoController {
         .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping (value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Equipamento equipamento){
 
-    /*
-
-   
-    private ResponseEntity<Equipamento> buscarEquipamento(Equipamento equipamento){
-
-
-
-        
-
-
-        return equipamentoRepository.findById(id)
-        .map(registro -> ResponseEntity.ok().body(registro))
-        .orElse(ResponseEntity.notFound().build());
+        Optional<Equipamento> equipamentoBanco = equipamentoRepository.findById(null);
+        Equipamento equipamentoNovo = equipamentoBanco.get();
+        equipamentoNovo.setNome(equipamento.getNome());
+        equipamentoRepository.save(equipamentoNovo);
+        return ResponseEntity.noContent().build();
     }
-    */
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+        equipamentoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
