@@ -1,15 +1,22 @@
 package com.castelo.equipamento.controller;
 
-import java.util.List;
+import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.castelo.equipamento.dto.ManutencaoDto;
+import com.castelo.equipamento.modelo.Manutencao;
 import com.castelo.equipamento.repository.ManutencaoRepository;
 
 @RestController
@@ -19,37 +26,40 @@ public class ManutencaoController {
     @Autowired
     private ManutencaoRepository manutencaoRepository;
 
-    @GetMapping(value = "/imprimir")
-    public String imprimir(){
-        return "chegou no servidor";
-    }
-
     @PostMapping(value = "/cadastrar")
-    public void cadastrar(){
-        System.out.println("cadastrou com sucesso");
+    public ResponseEntity<Manutencao> cadastrar(@RequestBody ManutencaoDto manutencaoDto){
+        Manutencao manutencao = manutencaoDto.novaManutencao();
+        manutencaoRepository.save(manutencao);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}") 
+                .buildAndExpand(manutencao.getId())
+                    .toUri();
+
+        
+        return ResponseEntity.created(uri).body(manutencao);
     }
 
-    @PutMapping(value = "/atualizar")
-    public void atualizar(){
-        System.out.println("atualização concluida");
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Manutencao> findById(@PathVariable long id ){
+        return manutencaoRepository.findById(id)
+            .map(registro -> ResponseEntity.ok().body(registro))
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping(value = "/deletar")
-    public void deletar(){
-        System.out.println("deletado com sucesso");
+     @PutMapping (value = "/{id}")
+     public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Manutencao manutencao){
+
+        Optional<Manutencao> manutencaoBanco = manutencaoRepository.findById(null);
+        Manutencao manutencaoNovo = manutencaoBanco.get();
+        manutencaoNovo.setNome(manutencao.getNome());
+        manutencaoRepository.save(manutencaoNovo);
+        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public List findAll(){
-        return manutencaoRepository.findAll();
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+      manutencaoRepository.deleteById(id);
+      return   ResponseEntity.noContent().build();
     }
-
-
-/*
-    @PostMapping(value = "/insert")
-    public String insert(){
-        return 
-}
-*/
-    
 }
