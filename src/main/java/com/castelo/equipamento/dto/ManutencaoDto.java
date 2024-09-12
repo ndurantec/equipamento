@@ -3,7 +3,6 @@ package com.castelo.equipamento.dto;
 import java.sql.Date;
 
 import com.castelo.equipamento.modelo.Equipamento;
-import com.castelo.equipamento.modelo.Local;
 import com.castelo.equipamento.modelo.Manutencao;
 
 public class ManutencaoDto {
