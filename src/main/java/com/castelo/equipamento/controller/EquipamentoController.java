@@ -27,26 +27,6 @@ public class EquipamentoController {
     @Autowired
     private EquipamentoRepository equipamentoRepository;
 
-    @GetMapping(value = "/imprimir")
-    public String imprimir(){
-        return "chegou no servidor";
-    }
-
-    @PutMapping(value = "/atualizar")
-    public void atualizar(){
-        System.out.println("atualização concluida");
-    }
-
-    @DeleteMapping(value = "/deletar")
-    public void deletar(){
-        System.out.println("deletado com sucesso");
-    }
-
-    @GetMapping(value = "/findAll")
-        public List findAll() {
-        return equipamentoRepository.findAll();
-    }
-
     @PostMapping(value = "/cadastrarequipamento")
     public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
@@ -54,8 +34,8 @@ public class EquipamentoController {
         equipamentoRepository.save(equipamento);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}").
-                    buildAndExpand(equipamento.getId())
+            .path("/{id}").
+                buildAndExpand(equipamento.getId())
                     .toUri();
 
         return ResponseEntity.created(uri).body(equipamento);
