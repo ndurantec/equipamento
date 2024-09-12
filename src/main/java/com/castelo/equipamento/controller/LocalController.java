@@ -38,26 +38,16 @@ public class LocalController {
     Local novoLocal = localDto.novoLocal();
     localRepository.save(novoLocal);
 
-
     System.out.println("chegou no metodo insert");
     System.out.println(localDto.getNome());
     
-
-
     URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
     .path("{/id}")
     .buildAndExpand(novoLocal.getId())
     .toUri();
 
     return ResponseEntity.created(uri).body(novoLocal);
-
-    
     }
-
-
-
-
-
 
     @DeleteMapping(value = "/deletar")
     public ResponseEntity<Void> deletar(){
@@ -94,14 +84,16 @@ public class LocalController {
     @PutMapping (value = "/{id}")
     public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Local local){
 
-    Optional<Local> localBanco = localRepository.findById(null);
-   Local localNovo = localBanco.get();
-   localNovo.setNome(local.getNome());
-   localRepository.save(localNovo);
-   return ResponseEntity.noContent().build();
-
-
+        Optional<Local> localBanco = localRepository.findById(null);
+        Local localNovo = localBanco.get();
+        localNovo.setNome(local.getNome());
+        localRepository.save(localNovo);
+        return ResponseEntity.noContent().build();
     }
 
-
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+      localRepository.deleteById(id);
+      return   ResponseEntity.noContent().build();
+    }
 }
