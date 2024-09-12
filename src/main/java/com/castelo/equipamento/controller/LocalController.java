@@ -1,7 +1,6 @@
 package com.castelo.equipamento.controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,40 +26,6 @@ public class LocalController {
     @Autowired
     private LocalRepository localRepository;
 
-    @PutMapping(value = "/atualizar")
-    public ResponseEntity<Void> atualizar(){
-        System.out.println("atualizando concluída");
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping(value = "/insert")
-    public ResponseEntity<Local> insert(@RequestBody LocalDto localDto){
-    Local novoLocal = localDto.novoLocal();
-    localRepository.save(novoLocal);
-
-    System.out.println("chegou no metodo insert");
-    System.out.println(localDto.getNome());
-    
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-    .path("{/id}")
-    .buildAndExpand(novoLocal.getId())
-    .toUri();
-
-    return ResponseEntity.created(uri).body(novoLocal);
-    }
-
-    @DeleteMapping(value = "/deletar")
-    public ResponseEntity<Void> deletar(){
-        System.out.println("deletado com sucesso");
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping(value = "/findAll")
-    public ResponseEntity<List<Local>> findAll() {
-        List<Local> locais = localRepository.findAll();
-        return ResponseEntity.ok(locais);
-    }  
-
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Local> cadastrar(@RequestBody LocalDto localDto){
 
@@ -68,9 +33,9 @@ public class LocalController {
         localRepository.save(local);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                    .buildAndExpand(local.getId())
-                     .toUri();
+            .path("/{id}")
+                .buildAndExpand(local.getId())
+                    .toUri();
 
         return ResponseEntity.created(uri).body(local);
     }
@@ -81,6 +46,7 @@ public class LocalController {
         .map(registro -> ResponseEntity.ok().body(registro))
         .orElse(ResponseEntity.notFound().build());
     }
+
     @PutMapping (value = "/{id}")
     public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Local local){
 
@@ -93,7 +59,7 @@ public class LocalController {
 
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
-      localRepository.deleteById(id);
-      return   ResponseEntity.noContent().build();
+        localRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
