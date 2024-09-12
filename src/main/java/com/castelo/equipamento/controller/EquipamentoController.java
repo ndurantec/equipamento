@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +21,14 @@ import com.castelo.equipamento.modelo.Equipamento;
 import com.castelo.equipamento.repository.EquipamentoRepository;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/equipamento")
 public class EquipamentoController {
 
     @Autowired
     private EquipamentoRepository equipamentoRepository;
 
-    @PostMapping(value = "/cadastrarequipamento")
+    @PostMapping(value = "/cadastrar")
     public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
         Equipamento equipamento = equipamentoDto.novoEquipamento();
