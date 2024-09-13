@@ -2,9 +2,11 @@ package com.castelo.equipamento.controller;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import com.castelo.equipamento.modelo.Local;
 import com.castelo.equipamento.repository.LocalRepository;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/local")
 public class LocalController {
 
@@ -61,5 +64,10 @@ public class LocalController {
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         localRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/findAll")
+    public List<Local> findAll() {
+        return localRepository.findAll();
     }
 }
