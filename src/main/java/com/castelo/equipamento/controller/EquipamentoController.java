@@ -2,8 +2,8 @@ package com.castelo.equipamento.controller;
 
 import java.net.URI;
 import java.util.Optional;
+import java.util.List;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -65,10 +65,9 @@ public class EquipamentoController {
         equipamentoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-/* 
+
     @GetMapping(value = "/findAll")
-    public List<> Listar(){
+    public List<Equipamento> Listar(){
         return equipamentoRepository.findAll();
     }
-        */
 }
