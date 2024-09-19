@@ -20,19 +20,23 @@ public class Equipamento implements Serializable{
     private String nome;
     private Local local;
     private String marca;
-    private boolean status;
+    private String status;
     private int numeracao;
-
+    
     public Equipamento() {
     }
 
-    public Equipamento(Long id, String nome, Local local, String marca, boolean status, int numeracao) {
+    public Equipamento(Long id, String nome, Local local, String marca, String status, int numeracao) {
         this.id = id;
         this.nome = nome;
         this.local = local;
         this.marca = marca;
         this.status = status;
         this.numeracao = numeracao;
+    }
+
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
     public Long getId() {
@@ -67,11 +71,11 @@ public class Equipamento implements Serializable{
         this.marca = marca;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -91,7 +95,7 @@ public class Equipamento implements Serializable{
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         result = prime * result + ((local == null) ? 0 : local.hashCode());
         result = prime * result + ((marca == null) ? 0 : marca.hashCode());
-        result = prime * result + (status ? 1231 : 1237);
+        result = prime * result + ((status == null) ? 0 : status.hashCode());
         result = prime * result + numeracao;
         return result;
     }
@@ -125,7 +129,10 @@ public class Equipamento implements Serializable{
                 return false;
         } else if (!marca.equals(other.marca))
             return false;
-        if (status != other.status)
+        if (status == null) {
+            if (other.status != null)
+                return false;
+        } else if (!status.equals(other.status))
             return false;
         if (numeracao != other.numeracao)
             return false;
@@ -137,4 +144,4 @@ public class Equipamento implements Serializable{
         return "Equipamento [id=" + id + ", nome=" + nome + ", local=" + local + ", marca=" + marca + ", status="
                 + status + ", numeracao=" + numeracao + "]";
     }
-}  
+}
