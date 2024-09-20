@@ -32,6 +32,8 @@ public class EquipamentoController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
+        System.out.println(equipamentoDto.toString());
+
         Equipamento equipamento = equipamentoDto.novoEquipamento();
         equipamentoRepository.save(equipamento);
 

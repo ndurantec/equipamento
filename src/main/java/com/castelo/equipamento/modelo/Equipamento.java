@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Equipamento implements Serializable{
@@ -18,7 +20,11 @@ public class Equipamento implements Serializable{
     private Long id;
 
     private String nome;
+    
+    @ManyToOne
+    @JoinColumn(name = "id")
     private Local local;
+
     private String marca;
     private String status;
     private int numeracao;

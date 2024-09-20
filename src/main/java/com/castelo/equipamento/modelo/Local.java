@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "lugar")
 public class Local implements Serializable {
 
     private static final long serialVersionUID =1L;
