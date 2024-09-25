@@ -22,24 +22,27 @@ public class Equipamento implements Serializable{
     private String nome;
     
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "local_id")
     private Local local;
 
     private String marca;
     private String status;
-    private int numeracao;
+    private String numeracao;
     
     public Equipamento() {
     }
 
-    public Equipamento(Long id, String nome, Local local, String marca, String status, int numeracao) {
-        this.id = id;
+    
+
+    public Equipamento(String nome, Local local, String marca, String status, String numeracao) {
         this.nome = nome;
         this.local = local;
         this.marca = marca;
         this.status = status;
         this.numeracao = numeracao;
     }
+
+
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -85,12 +88,18 @@ public class Equipamento implements Serializable{
         this.status = status;
     }
 
-    public int getNumeracao() {
+    public String getNumeracao() {
         return numeracao;
     }
 
-    public void setNumeracao(int numeracao) {
+    public void setNumeracao(String numeracao) {
         this.numeracao = numeracao;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipamento [id=" + id + ", nome=" + nome + ", local=" + local + ", marca=" + marca + ", status="
+                + status + ", numeracao=" + numeracao + "]";
     }
 
     @Override
@@ -102,7 +111,7 @@ public class Equipamento implements Serializable{
         result = prime * result + ((local == null) ? 0 : local.hashCode());
         result = prime * result + ((marca == null) ? 0 : marca.hashCode());
         result = prime * result + ((status == null) ? 0 : status.hashCode());
-        result = prime * result + numeracao;
+        result = prime * result + ((numeracao == null) ? 0 : numeracao.hashCode());
         return result;
     }
 
@@ -140,14 +149,14 @@ public class Equipamento implements Serializable{
                 return false;
         } else if (!status.equals(other.status))
             return false;
-        if (numeracao != other.numeracao)
+        if (numeracao == null) {
+            if (other.numeracao != null)
+                return false;
+        } else if (!numeracao.equals(other.numeracao))
             return false;
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Equipamento [id=" + id + ", nome=" + nome + ", local=" + local + ", marca=" + marca + ", status="
-                + status + ", numeracao=" + numeracao + "]";
-    }
+    
+   
 }

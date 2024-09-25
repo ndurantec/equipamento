@@ -7,12 +7,12 @@ public class EquipamentoDto {
     private LocalDto local;
     private String marca;
     private String status;
-    private int numeracao;
+    private String numeracao;
 
     public EquipamentoDto() {
     }
 
-    public EquipamentoDto(String nome, LocalDto local, String marca, String status, int numeracao) {
+    public EquipamentoDto(String nome, LocalDto local, String marca, String status, String numeracao) {
         this.nome = nome;
         this.local = local;
         this.marca = marca;
@@ -44,14 +44,18 @@ public class EquipamentoDto {
     public void setStatus(String status) {
         this.status = status;
     }
-    public int getNumeracao() {
+    
+
+    
+    public String getNumeracao() {
         return numeracao;
     }
-    public void setNumeracao(int numeracao) {
+    
+    public void setNumeracao(String numeracao) {
         this.numeracao = numeracao;
     }
 
     public Equipamento novoEquipamento(){
-        return new Equipamento(null, nome, null, marca, status, numeracao);
+        return new Equipamento(nome, null, marca, status, numeracao);
     }
 }

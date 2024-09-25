@@ -72,4 +72,13 @@ public class EquipamentoController {
     public List<Equipamento> Listar(){
         return equipamentoRepository.findAll();
     }
+
+    @GetMapping(value = "/consultaPorNumeracao") 
+    public ResponseEntity<Equipamento> findByNumeracao(@PathVariable String numeracao){
+        Equipamento equipamentoConsultado = equipamentoRepository.findByNumeracao(numeracao);
+        
+        System.out.println("O Equipamento da consulta ---> " + equipamentoConsultado.toString());
+        
+        return null;
+    }
 }
