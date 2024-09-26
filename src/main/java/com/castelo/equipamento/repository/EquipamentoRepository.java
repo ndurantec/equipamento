@@ -8,7 +8,7 @@ import com.castelo.equipamento.modelo.Equipamento;
 public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> {
 
 
-    @Query("select * from equipamento where numeracao like ? ")    
+    @Query(value = "select * from equipamento where numeracao = ?1", nativeQuery = true)    
     Equipamento findByNumeracao(String numeracao);
 
 }

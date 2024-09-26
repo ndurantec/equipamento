@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,7 +33,12 @@ public class EquipamentoController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Equipamento> cadastrarEquipamento(@RequestBody EquipamentoDto equipamentoDto){
 
+        System.out.println("=======================================");
+        System.out.println("=======================================");
         System.out.println(equipamentoDto.toString());
+        System.out.println(equipamentoDto.getLocal().getId());
+        System.out.println("=======================================");
+        System.out.println("=======================================");
 
         Equipamento equipamento = equipamentoDto.novoEquipamento();
         equipamentoRepository.save(equipamento);
@@ -73,12 +79,28 @@ public class EquipamentoController {
         return equipamentoRepository.findAll();
     }
 
+    /*
     @GetMapping(value = "/consultaPorNumeracao") 
-    public ResponseEntity<Equipamento> findByNumeracao(@PathVariable String numeracao){
-        Equipamento equipamentoConsultado = equipamentoRepository.findByNumeracao(numeracao);
+    public ResponseEntity<Equipamento> findByNumeracao(@RequestBody EquipamentoDto equipamentoDto){
+        Equipamento equipamentoConsultado = equipamentoRepository.findByNumeracao(equipamentoDto.getNumeracao());
         
         System.out.println("O Equipamento da consulta ---> " + equipamentoConsultado.toString());
         
         return null;
+    }
+    */
+
+    @GetMapping(value = "/consultaPorNumeracao")
+    public ResponseEntity<EquipamentoDto> findByNumeracao(@RequestParam(value = "") String numeracao) {
+        Equipamento equipamentoConsultado = equipamentoRepository.findByNumeracao(numeracao);
+
+        System.out.println(equipamentoConsultado.toString());
+
+        EquipamentoDto equipamentoDto = new EquipamentoDto(equipamentoConsultado.getNome(),
+                                                            equipamentoConsultado.getLocal(),     
+                                                            equipamentoConsultado.getMarca(),
+                                                            equipamentoConsultado.getStatus(), 
+                                                            equipamentoConsultado.getNumeracao());
+        return ResponseEntity.ok().body(equipamentoDto);
     }
 }
