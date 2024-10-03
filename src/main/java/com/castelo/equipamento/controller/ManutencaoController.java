@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.castelo.equipamento.modelo.Manutencao;
 import com.castelo.equipamento.repository.ManutencaoRepository;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/manutencao")
 public class ManutencaoController {
 
@@ -28,6 +30,11 @@ public class ManutencaoController {
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Manutencao> cadastrar(@RequestBody ManutencaoDto manutencaoDto){
+        System.out.println("==================================");
+        System.out.println("==================================");
+        System.out.println(manutencaoDto.toString());
+        System.out.println("==================================");
+        System.out.println("==================================");
         Manutencao manutencao = manutencaoDto.novaManutencao();
         manutencaoRepository.save(manutencao);
 
