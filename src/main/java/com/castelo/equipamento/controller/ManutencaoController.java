@@ -30,12 +30,14 @@ public class ManutencaoController {
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Manutencao> cadastrar(@RequestBody ManutencaoDto manutencaoDto){
+        
         System.out.println("==================================");
         System.out.println("==================================");
         System.out.println(manutencaoDto.toString());
         System.out.println("==================================");
         System.out.println("==================================");
-        Manutencao manutencao = manutencaoDto.novaManutencao();
+
+        Manutencao manutencao = manutencaoDto.novoManutencao();
         manutencaoRepository.save(manutencao);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
