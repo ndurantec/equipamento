@@ -38,7 +38,7 @@ public class ManutencaoController {
         System.out.println("==================================");
 
         Manutencao manutencao = manutencaoDto.novoManutencao();
-        manutencaoRepository.save(manutencaoDto);
+        manutencaoRepository.save(manutencao);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{id}") 
@@ -50,7 +50,7 @@ public class ManutencaoController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ManutencaoDto> findById(@PathVariable long id ){
+    public ResponseEntity<Manutencao> findById(@PathVariable long id ){
         return manutencaoRepository.findById(id)
             .map(registro -> ResponseEntity.ok().body(registro))
                 .orElse(ResponseEntity.notFound().build());
@@ -59,8 +59,8 @@ public class ManutencaoController {
      @PutMapping (value = "/{id}")
      public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Manutencao manutencao){
 
-        Optional<ManutencaoDto> manutencaoBanco = manutencaoRepository.findById(null);
-        ManutencaoDto manutencaoNovo = manutencaoBanco.get();
+        Optional<Manutencao> manutencaoBanco = manutencaoRepository.findById(id);
+        Manutencao manutencaoNovo = manutencaoBanco.get();
         manutencaoNovo.setNome(manutencao.getNome());
         manutencaoRepository.save(manutencaoNovo);
         return ResponseEntity.noContent().build();
