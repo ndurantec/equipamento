@@ -29,8 +29,15 @@ public class LocalDto {
     }
 
     public Local novoLocal(){
-        return new Local(id, nome);
+        return new Local(nome);
     }
 
+
+    @Override
+    public String toString() {
+        return "LocalDto [id=" + id + ", nome=" + nome + "]";
+    }
+
+    
 
 }

@@ -25,6 +25,11 @@ public class Local implements Serializable {
         this.nome = nome;
     }
 
+    
+    public Local(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

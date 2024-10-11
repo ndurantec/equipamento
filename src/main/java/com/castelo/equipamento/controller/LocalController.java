@@ -32,6 +32,15 @@ public class LocalController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Local> cadastrar(@RequestBody LocalDto localDto){
 
+
+        System.out.println("===============================================");
+        System.out.println("===============================================");
+        System.out.println("===============================================");
+        System.out.println(localDto.toString());
+        System.out.println("===============================================");
+        System.out.println("===============================================");
+        System.out.println("===============================================");
+
         Local local = localDto.novoLocal();
         localRepository.save(local);
 
