@@ -60,16 +60,20 @@ public class LocalController {
     }
 
     @PutMapping (value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable long id, @RequestBody Local local){
+    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Local local){
 
-        Optional<Local> localBanco = localRepository.findById(null);
-        Local localNovo = localBanco.get();
-        localNovo.setNome(local.getNome());
-        localRepository.save(localNovo);
+        Optional<Local> localBanco = localRepository.findById(id);
+        
+        Local localObjeto = localBanco.get();
+        
+        localObjeto.setNome(local.getNome());
+        
+        localRepository.save(localObjeto);
+        
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         localRepository.deleteById(id);
         return ResponseEntity.noContent().build();
@@ -79,4 +83,15 @@ public class LocalController {
     public List<Local> findAll() {
         return localRepository.findAll();
     }
+
+    @PostMapping("/findByNome")
+    public ResponseEntity<Long> buscarContaPorNome(@RequestBody LocalDto localDto) {
+        //Optional<Local> localBanco = localRepository.findByNome(localDto.getNome());
+        Long id = localRepository.findByNome(localDto.getNome());
+        
+        return ResponseEntity.ok().body(id);
+    }
+
+
+
 }
