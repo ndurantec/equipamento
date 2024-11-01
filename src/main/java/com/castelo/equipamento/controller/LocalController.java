@@ -32,7 +32,6 @@ public class LocalController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<Local> cadastrar(@RequestBody LocalDto localDto){
 
-
         System.out.println("===============================================");
         System.out.println("===============================================");
         System.out.println("===============================================");
@@ -54,6 +53,7 @@ public class LocalController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Local> findById(@PathVariable long id ){
+
         return localRepository.findById(id)
         .map(registro -> ResponseEntity.ok().body(registro))
         .orElse(ResponseEntity.notFound().build());
@@ -63,35 +63,30 @@ public class LocalController {
     public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody Local local){
 
         Optional<Local> localBanco = localRepository.findById(id);
-        
         Local localObjeto = localBanco.get();
-        
         localObjeto.setNome(local.getNome());
-        
         localRepository.save(localObjeto);
-        
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
+
         localRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/findAll")
     public List<Local> findAll() {
+
         return localRepository.findAll();
     }
 
     @PostMapping("/findByNome")
-    public ResponseEntity<Long> buscarContaPorNome(@RequestBody LocalDto localDto) {
+    public ResponseEntity<Long> buscarLocalPorNome(@RequestBody LocalDto localDto) {
         //Optional<Local> localBanco = localRepository.findByNome(localDto.getNome());
+
         Long id = localRepository.findByNome(localDto.getNome());
-        
         return ResponseEntity.ok().body(id);
     }
-
-
-
 }
