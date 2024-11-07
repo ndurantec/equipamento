@@ -41,6 +41,18 @@ public class EquipamentoController {
         System.out.println("===============================================");
 
         Equipamento equipamento = equipamentoDto.novoEquipamento();
+
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println(equipamento.toString());
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+
+
+
+
         equipamentoRepository.save(equipamento);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -28,7 +28,7 @@ public class EquipamentoDto {
     
     
     public Equipamento novoEquipamento(){
-        return new Equipamento(nome, null, marca, status, numeracao);
+        return new Equipamento(nome, local, marca, status, numeracao);
     }
     
     public Long getId() {
