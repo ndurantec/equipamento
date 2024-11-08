@@ -10,11 +10,9 @@ public class LocalDto {
     public LocalDto() {
     }
 
-    
     public Long getId() {
         return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;
@@ -32,12 +30,8 @@ public class LocalDto {
         return new Local(nome);
     }
 
-
     @Override
     public String toString() {
         return "LocalDto [id=" + id + ", nome=" + nome + "]";
     }
-
-    
-
 }

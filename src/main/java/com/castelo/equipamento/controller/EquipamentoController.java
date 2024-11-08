@@ -50,9 +50,6 @@ public class EquipamentoController {
         System.out.println("///////////////////////////////////////////////");
         System.out.println("///////////////////////////////////////////////");
 
-
-
-
         equipamentoRepository.save(equipamento);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -14,7 +14,6 @@ public class Equipamento implements Serializable{
 
     private static final long serialVersionUID =1L;
     
-   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,8 +31,6 @@ public class Equipamento implements Serializable{
     public Equipamento() {
     }
 
-    
-
     public Equipamento(String nome, Local local, String marca, String status, String numeracao) {
         this.nome = nome;
         this.local = local;
@@ -41,8 +38,6 @@ public class Equipamento implements Serializable{
         this.status = status;
         this.numeracao = numeracao;
     }
-
-
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -156,7 +151,4 @@ public class Equipamento implements Serializable{
             return false;
         return true;
     }
-
-    
-   
 }

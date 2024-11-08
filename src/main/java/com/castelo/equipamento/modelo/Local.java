@@ -16,7 +16,6 @@ public class Local implements Serializable {
     private Long id;
     private String nome;
 
-
     public Local() {
     }
 
@@ -25,7 +24,6 @@ public class Local implements Serializable {
         this.nome = nome;
     }
 
-    
     public Local(String nome) {
         this.nome = nome;
     }
