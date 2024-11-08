@@ -92,10 +92,20 @@ public class EquipamentoController {
     }
 
     @PostMapping("/findByNome")
-    public ResponseEntity<Long> buscarEquipamentoPorNome(@RequestBody EquipamentoDto equipamentoDto) {
+    public ResponseEntity<Equipamento> buscarEquipamentoPorNome(@RequestBody EquipamentoDto equipamentoDto) {
         //Optional<Local> localBanco = localRepository.findByNome(localDto.getNome());
 
-        Long id = equipamentoRepository.findByNome(equipamentoDto.getNome());
-        return ResponseEntity.ok().body(id);
+
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println(equipamentoDto.toString());
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+
+
+       Equipamento equipamento = equipamentoRepository.findByNome(equipamentoDto.getNome(), equipamentoDto.getNumeracao());
+        return ResponseEntity.ok().body(equipamento);
     }
 }

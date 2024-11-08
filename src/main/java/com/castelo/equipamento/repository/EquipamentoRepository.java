@@ -7,7 +7,7 @@ import com.castelo.equipamento.modelo.Equipamento;
 
 public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> {
 
-    @Query(value = "select id from equipamento where numeracao = ?1", nativeQuery = true)    
-    Long findByNome(String numeracao);
+    @Query(value = "select * from equipamento where nome = ?1 and numeracao = ?2", nativeQuery = true)    
+    Equipamento findByNome(String nome, String numeracao);
 
 }
