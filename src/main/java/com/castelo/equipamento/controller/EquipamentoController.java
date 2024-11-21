@@ -74,6 +74,10 @@ public class EquipamentoController {
         Optional<Equipamento> equipamentoBanco = equipamentoRepository.findById(id);
         Equipamento equipamentoObjeto = equipamentoBanco.get();
         equipamentoObjeto.setNome(equipamento.getNome());
+        equipamentoObjeto.setLocal(equipamento.getLocal());
+        equipamentoObjeto.setMarca(equipamento.getMarca());
+        equipamentoObjeto.setStatus(equipamento.getStatus());
+        equipamentoObjeto.setNumeracao(equipamento.getNumeracao());
         equipamentoRepository.save(equipamentoObjeto);
         return ResponseEntity.noContent().build();
     }

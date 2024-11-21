@@ -39,10 +39,6 @@ public class Equipamento implements Serializable{
         this.numeracao = numeracao;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-
     public Long getId() {
         return id;
     }
