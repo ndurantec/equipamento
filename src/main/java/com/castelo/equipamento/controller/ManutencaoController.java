@@ -92,10 +92,20 @@ public class ManutencaoController {
     }
 
     @PostMapping("/findByNome")
-    public ResponseEntity<Long> buscarManutencaoPorNome(@RequestBody ManutencaoDto manutencaoDto) {
-        //Optional<Local> localBanco = localRepository.findByNome(localDto.getNome());
+    public ResponseEntity<Manutencao> buscarEquipamentoPorNome(@RequestBody ManutencaoDto manutencaoDto) {
+        Manutencao manutencaoBanco = manutencaoRepository.findByNome(manutencaoDto.getLocal().getId(), manutencaoDto.getEquipamento().getId());
 
-        Long id = manutencaoRepository.findByNome(manutencaoDto.getNome());
-        return ResponseEntity.ok().body(id);
+
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println(manutencaoDto.toString());
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////");
+
+
+       
+        return ResponseEntity.ok().body(manutencaoBanco);
     }
 }

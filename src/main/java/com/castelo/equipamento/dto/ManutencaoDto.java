@@ -13,15 +13,16 @@ public class ManutencaoDto {
     private String telefone;
     private String email;
     private Date data;
-    private Double custo;
+    private double custo;
     private Equipamento equipamento;
     private String nome;
     
     public ManutencaoDto() {
     }
 
-    public ManutencaoDto(Local local, String telefone, String email, Date data, Double custo, Equipamento equipamento,
-            String nome) {
+    public ManutencaoDto(Long id, Local local, String telefone, String email, Date data, Double custo,
+            Equipamento equipamento, String nome) {
+        this.id = id;
         this.local = local;
         this.telefone = telefone;
         this.email = email;
@@ -32,7 +33,7 @@ public class ManutencaoDto {
     }
 
     public Manutencao novoManutencao(){
-        return new Manutencao(id, local, telefone, email, data, 0, equipamento, nome);
+        return new Manutencao(local, telefone, email, data, custo, equipamento, nome);
     }
 
     public Long getId() {
@@ -75,11 +76,11 @@ public class ManutencaoDto {
         this.data = data;
     }
 
-    public Double getCusto() {
+    public double getCusto() {
         return custo;
     }
 
-    public void setCusto(Double custo) {
+    public void setCusto(double custo) {
         this.custo = custo;
     }
 
@@ -100,6 +101,12 @@ public class ManutencaoDto {
     }
 
     @Override
+    public String toString() {
+        return "ManutencaoDto [id=" + id + ", local=" + local + ", telefone=" + telefone + ", email=" + email
+                + ", data=" + data + ", custo=" + custo + ", equipamento=" + equipamento + ", nome=" + nome + "]";
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -108,7 +115,9 @@ public class ManutencaoDto {
         result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((data == null) ? 0 : data.hashCode());
-        result = prime * result + ((custo == null) ? 0 : custo.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(custo);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + ((equipamento == null) ? 0 : equipamento.hashCode());
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
         return result;
@@ -148,10 +157,7 @@ public class ManutencaoDto {
                 return false;
         } else if (!data.equals(other.data))
             return false;
-        if (custo == null) {
-            if (other.custo != null)
-                return false;
-        } else if (!custo.equals(other.custo))
+        if (Double.doubleToLongBits(custo) != Double.doubleToLongBits(other.custo))
             return false;
         if (equipamento == null) {
             if (other.equipamento != null)
@@ -166,9 +172,5 @@ public class ManutencaoDto {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "ManutencaoDto [id=" + id + ", local=" + local + ", telefone=" + telefone + ", email=" + email
-                + ", data=" + data + ", custo=" + custo + ", equipamento=" + equipamento + ", nome=" + nome + "]";
-    }
+    
 }

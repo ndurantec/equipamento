@@ -30,14 +30,14 @@ public class Manutencao implements Serializable{
     @ManyToOne
     @JoinColumn(name = "equipamento_id")
     private Equipamento equipamento;
+    
     private String nome;
 
     public Manutencao() {
     }
 
-    public Manutencao(Long id, Local local, String telefone, String email, Date data, double custo,
-            Equipamento equipamento, String nome) {
-        this.id = id;
+    public Manutencao(Local local, String telefone, String email, Date data, double custo, Equipamento equipamento,
+            String nome) {
         this.local = local;
         this.telefone = telefone;
         this.email = email;
@@ -45,10 +45,6 @@ public class Manutencao implements Serializable{
         this.custo = custo;
         this.equipamento = equipamento;
         this.nome = nome;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
     public Long getId() {
