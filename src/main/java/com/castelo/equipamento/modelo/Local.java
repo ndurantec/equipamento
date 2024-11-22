@@ -1,19 +1,23 @@
 package com.castelo.equipamento.modelo;
+
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column; // Importando para usar @Column
 
 @Entity(name = "lugar")
 public class Local implements Serializable {
 
-    private static final long serialVersionUID =1L;
-    
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)  // Adicionando a restrição de unicidade no campo nome
     private String nome;
 
     public Local() {
@@ -78,5 +82,5 @@ public class Local implements Serializable {
     @Override
     public String toString() {
         return "Local [id=" + id + ", nome=" + nome + "]";
-    }    
+    }
 }
